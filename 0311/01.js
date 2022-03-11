@@ -104,13 +104,58 @@
 //     //     console.log('不是閏年');
 
 
-function isleapYear (year) {
-    if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
-        return "閏年"
-    }
-    return "不是閏年"
+// function isleapYear (year) {
+//     if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
+//         return "閏年"
+//     }
+//     return "不是閏年"
+// }
+// console.log(isleapYear(1999)) 
+// console.log(isleapYear(2000)) 
+// console.log(isleapYear(2004)) 
+// console.log(isleapYear(1900)) 
+
+
+// let list = ['d'];
+// list.push('Q');
+// console.log(list);
+
+// const colors = ['yellow', 'Orange', 'Red'];
+// colors.push('Blue');
+
+// console.log(colors);
+
+// let list = ["a","b","c","d"]
+// list.splice(1,2)
+// console.log(list);
+
+// function headAndTail (list) {    
+//     list.splice(1,list.length-2)
+//     return list
+// }
+// let a = [1, 2, 3, 4, 5]
+// let b = ["a", "b", "c", "f", "k"]
+// console.log(headAndTail(a));
+// console.log(headAndTail(b));
+
+
+// let list = [1, 2, 3, 4, 5]
+// function newHeadAndTail (list) {
+//     let newList = []
+//     newList.push(list[0])
+//     newList.push(list[list.length-1])
+//     return newList
+// }
+// console.log(newHeadAndTail(list));
+
+// function 
+
+const list =["a","b","c","d"]
+
+for (let index = 0; index < list.length; index++) {
+    console.log(list[index]);;    
 }
-console.log(isleapYear(1999)) 
-console.log(isleapYear(2000)) 
-console.log(isleapYear(2004)) 
-console.log(isleapYear(1900)) 
+
+list.forEach(function(x){
+    console.log(x);
+})
