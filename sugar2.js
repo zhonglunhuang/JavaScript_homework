@@ -6,7 +6,6 @@
 // function checkSmallLetters(alphabet) {
 //     checkList = alphabet.toString();
 //     if () {
-
 //     }
 // }
 
