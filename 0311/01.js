@@ -150,12 +150,31 @@
 
 // function 
 
-const list =["a","b","c","d"]
+// const list =["a","b","cddddd","daqq"]
 
-for (let index = 0; index < list.length; index++) {
-    console.log(list[index]);;    
+// for (let index = 0; index < list.length; index++) {
+//     console.log(list[index]);;    
+// }
+
+// list.forEach(function(x){
+//     console.log(x);
+// })
+
+// const result = list.find(function(x){
+//     return x == "c"
+// })
+// console.log(result);
+
+// const qq = list.filter(function(x){
+//     return x.length >= 3
+// })
+
+// console.log(qq);
+
+
+const list =[1,2,3,4,5]
+for (let index = 0; index <= list.length-1; index++) {
+    list[index] = list[index] *2
 }
-
-list.forEach(function(x){
-    console.log(x);
-})
+console.log(list);
+//2,4,6,8,10
