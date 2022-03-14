@@ -15,12 +15,11 @@
 // ["O","Q","R","S"] 印出 P
 
 // const list = ["a", "b", "c", "d", "f", "g"]
-const list = ["O","Q","R","S"] 
+const list = ["O","Q","R","Z"] 
 
 // let firstUnicode = list[0].charCodeAt() ;
 // let lastUnicode = list[list.length-1].charCodeAt();
 // let distence = (lastUnicode - firstUnicode - 1)
-const list = ["O","Q","R","S"] //印出P
 
 function calLetter(list) {
     let firstUnicode = list[0].charCodeAt() ;        //找出陣列第一個字母的Unicode
