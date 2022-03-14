@@ -1,0 +1,25 @@
+desc "mail sender"
+task :sendmail do
+    puts "get email list from database"
+    sleep 2
+    puts "sending email....."
+    sleep 2
+    puts "done!"
+end
+
+task :open_the_door do
+    puts "open door!"
+end
+
+task :goto_toilet => :open_the_door do
+    puts "上廁所"
+end
+
+namespace :db do
+    task :migrate do
+        puts "migration!!"
+    end
+end
+
+
+task :default => :sendmail
