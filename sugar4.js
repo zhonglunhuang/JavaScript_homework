@@ -1,111 +1,55 @@
+// 思考做法
+// 1.數字轉國字並加入位數
+// 2.把零後面的單位移除(排除掉萬)
+// 3.把零移除，如果後面有數字留著
+
 function numberToTWCurrency(amount) {
-    var str = String(amount);
-    var numBig5 = str.replace(/0|1|2|3|4|5|6|7|8|9/g, function (match) {
-        var numToBig5 = {
-            0: '零',
-            1: '壹',
-            2: '貳',
-            3: '參',
-            4: '肆',
-            5: '伍',
-            6: '陸',
-            7: '柒',
-            8: '捌',
-            9: '玖',
-        };
-        return numToBig5[match];
+    var str = String(amount); //將數字轉字串
+    const Big5 = { 0: '零', 1: '壹', 2: '貳', 3: '參', 4: '肆', 5: '伍', 6: '陸', 7: '柒', 8: '捌', 9: '玖' }; //宣告數字與國字的比對表
+    let numBig5 = str.replace(/0|1|2|3|4|5|6|7|8|9/g, function (match) {
+        return Big5[match]; //用replace，並引用Big5取代數字改為國字
     });
-    function reverse(s) {
-        return s.split('').reverse().join('');
-    }
-
-    let renum = reverse(numBig5);
-    let arr = renum.split('');
-
-    for (let i = 1; i < renum.length; i++) {
-        // 加入數字後的位數
-        // console.log(i);
+    let arr = numBig5.split('').reverse(); //字串顛倒，方便計算位數(先轉陣列、翻轉陣列元素)
+    for (let i = 1; i < numBig5.length; i++) {    // 插入數字後的位數，並以numBig5的字串位數為跑回圈次數的依據
         if (i % 4 == 1 && i / 4 < 1) {
             arr.splice(i, 0, '拾');
-            // console.log(arr);
         } else if (i % 4 == 2) {
             arr.splice(i + i - 1, 0, '佰');
-            // console.log(arr);
         } else if (i % 4 == 3) {
             arr.splice(i + i - 1, 0, '仟');
-            // console.log(arr);
         } else if (i % 4 == 0) {
             arr.splice(i + i - 1, 0, '萬');
-            // console.log(arr);
         } else if (i % 4 == 1 && i / 4 > 1) {
             arr.splice(i + i - 1, 0, '拾');
         }
     }
     arr.forEach((ele, index) => {
+        //移除零後面的位數，不包含萬
         if (ele == '零' && arr[index - 1] !== '萬' && index > 0) {
-            // console.log(arr);
             arr.splice(index - 1, 1);
         }
     });
-    arr.forEach((ele, index) => {
-        let newArr = arr;
-        console.log(arr);
-        console.log(newArr);
-        if (ele == '零' && arr[index - 1] != '零') {
-            newArr.splice(index, 1);
+    newArr = arr.filter((word, index) => {
+        //篩選出非零數字，但如果零後面有數字國字留著(排除萬)。
+        if (word != '零') {
+            return word;
+        } else if ((word == '零' && arr[index - 1] == '萬') || arr[0] == '零') {
+            return;
+        } else if (word == '零' && arr[index - 1] != '零') {
+            return word;
         }
     });
-    return 'QQ';
+    const result = newArr.reverse().join(''); //翻轉陣列元素，並組成字串
+    return `${result}圓整`;
 }
-// console.log(numberToTWCurrency(1450)); // 印出 壹仟肆佰伍拾圓整
-// console.log(numberToTWCurrency(817)); // 印出 捌佰壹拾柒圓整
-// console.log(numberToTWCurrency(9527)); // 印出 玖仟伍佰貳拾柒圓整
-//   console.log(numberToTWCurrency(120000))  // 印出 壹拾貳萬圓整
+console.log(numberToTWCurrency(1450)); // 印出 壹仟肆佰伍拾圓整
+console.log(numberToTWCurrency(817)); // 印出 捌佰壹拾柒圓整
+console.log(numberToTWCurrency(9527)); // 印出 玖仟伍佰貳拾柒圓整
+console.log(numberToTWCurrency(120000)); // 印出 壹拾貳萬圓整
 console.log(numberToTWCurrency(1000001)); // 印出 壹佰萬零壹圓整
 
-//   // slice(start,end) Start不算，切到end，切字串出來
-//   let qq = "壹肆伍零".slice(3)
-//   console.log(qq);
 
-// function insert(str, index, newStr) {
-//     str = str.slice(0, index) + newStr + str.slice(index);
-//     return str;
-// }
-
-// function reverse(s) {
-//     return s.split('').reverse().join('');
-// }
-
-// let num = '壹肆伍零陸捌柒';
-// let renum = reverse(num);
-// let arr = renum.split('');
-
-// for (let i = 1; i < num.length; i++) {
-//     console.log(i);
-//     if (i % 4 == 1 && i / 4 < 1) {
-//         arr.splice(i, 0, '拾');
-//         console.log(arr);
-//     } else if (i % 4 == 2) {
-//         arr.splice(i + i - 1, 0, '佰');
-//         console.log(arr);
-//     } else if (i % 4 == 3) {
-//         arr.splice(i + i - 1, 0, '仟');
-//         console.log(arr);
-//     } else if (i % 4 == 0) {
-//         arr.splice(i + i - 1, 0, '萬');
-//         console.log(arr);
-//     } else if (i % 4 == 1 && i / 4 > 1) {
-//         arr.splice(i + i - 1, 0, '拾');
-//     }
-// }
-// console.log(arr);
-
-//   let newNum = reverse(renum)
-//   console.log(newNum);
-
-// 一千零一萬零一拾元整
-// 10010010
-
-// 1.數字轉字串並加入位數
-// 1.把零後面的單位移除(排除掉萬)
-// 1.把零移除，如果後面有數字留著
+function reverse(s) {
+    //字串顛倒
+    return s.split('').reverse().join('');
+}
