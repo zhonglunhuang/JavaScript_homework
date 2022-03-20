@@ -1,17 +1,72 @@
 function numberToTWCurrency(amount) {
-    var str = String(amount) 
-    var reg = /(\w*)1(.*)2(.*)3(.*)4(.*)5(.*)6(.*)7(.*)8(.*)9(.*)0(.*)/g
-    let strNew = str.replace(reg,"$1壹$2貳$3參$4肆$5伍$6陸$7柒$8捌$9玖$10零")
-    return strNew
+    var str = String(amount)
+    var numBig5 = str.replace(/0|1|2|3|4|5|6|7|8|9/g, function(match) {
+      var numToBig5 = {
+          '0': '零',
+          '1': '壹',
+          '2': '貳',
+          "3": '參',
+          '4': '肆',
+          '5': '伍',
+          '6': '陸',
+          '7': '柒',
+          '8': '捌',
+          '9': '玖',
+      };
+      return numToBig5[match];
+    });
+
+    return numBig5
   }
-  
   console.log(numberToTWCurrency(1450))    // 印出 壹仟肆佰伍拾圓整
   console.log(numberToTWCurrency(817))     // 印出 捌佰壹拾柒圓整
   console.log(numberToTWCurrency(9527))    // 印出 玖仟伍佰貳拾柒圓整
   console.log(numberToTWCurrency(120000))  // 印出 壹拾貳萬圓整
   console.log(numberToTWCurrency(1000001)) // 印出 壹佰萬零壹圓整
 
-//   var s="my javascript is very poor,who can help me?"
-//   var reg=/(\w*)my(.*)is(.*)can(.*)/g
+//   // slice(start,end) Start不算，切到end，切字串出來
+//   let qq = "壹肆伍零".slice(3)
+//   console.log(qq);
 
-//   console.log(s.replace(reg,"$1his$2was$3could"))
+function insert(str, index, newStr) {
+    str = str.slice(0, index) + newStr + str.slice(index);
+    return str;
+}
+
+function reverse(s) {
+    return s.split('').reverse().join('');
+}
+
+let num = '壹肆伍零陸捌柒';
+let renum = reverse(num);
+let arr = renum.split('');
+
+for (let i = 1; i < num.length; i++) {
+    console.log(i);
+    if (i % 4 == 1 && i / 4 < 1) {
+        arr.splice(i, 0, '拾');
+        console.log(arr);
+    } else if (i % 4 == 2) {
+        arr.splice(i + i - 1, 0, '佰');
+        console.log(arr);
+    } else if (i % 4 == 3) {
+        arr.splice(i + i - 1, 0, '仟');
+        console.log(arr);
+    } else if (i % 4 == 0) {
+        arr.splice(i + i - 1, 0, '萬');
+        console.log(arr);
+    } else if (i % 4 == 1 && i / 4 > 1) {
+        arr.splice(i + i - 1, 0, '拾');
+    }
+}
+console.log(arr);
+
+//   let newNum = reverse(renum)
+//   console.log(newNum);
+
+// 一千零一萬零一拾元整
+// 10010010
+
+// 1.數字轉字串並加入位數
+// 1.把零後面的單位移除(排除掉萬)
+// 1.把零移除，如果後面有數字留著
