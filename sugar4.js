@@ -19,7 +19,7 @@ function numberToTWCurrency(amount) {
             arr.splice(i + i - 1, 0, '仟');
         } else if (i % 4 == 0) {
             arr.splice(i + i - 1, 0, '萬');
-        } else if (i % 4 == 1 && i / 4 > 1) {
+        } else if (i % 4 == 1 ) {
             arr.splice(i + i - 1, 0, '拾');
         }
     }

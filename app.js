@@ -174,11 +174,45 @@
     
 //以*與" "印出一顆樹
 
-x = " "
-y = "*"
+// x = " "
+// y = "*"
 
-for (let a = 5, b = 1; a>=0,b < 10 ;a--,b += 2){
-    X = x.repeat(a);
-    Y = y.repeat(b);
-    console.log(X+Y);
+// for (let a = 5, b = 1; a>=0,b < 10 ;a--,b += 2){
+//     X = x.repeat(a);
+//     Y = y.repeat(b);
+//     console.log(X+Y);
+// }
+
+// var a = 1
+
+// function hello() {
+//     a = 2
+//     console.log(a);
+// }
+
+// hello()
+// console.log(a);
+
+// console.log(0);
+
+// setTimeout(function () {
+//     console.log(123);    
+// },0)
+
+// console.log(1);
+
+// while (true) {
+// }
+
+for (var a = 0 ; a < 3 ; a++){
+    setTimeout(() => {
+        console.log(`var = ${a}`);
+    }, 1000 * a);
 }
+    
+for (let a = 0 ; a < 3 ; a++){
+    setTimeout(() => {
+        console.log(`let = ${a}`);
+    }, 1000 * a);
+}
+    
