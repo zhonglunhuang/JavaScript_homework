@@ -1,0 +1,11 @@
+{
+  "name": "Js-pratice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:zhonglunhuang/JavaScript_homework.git",
+  "author": "Jon Huang <s72503013@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nvm": "0.0.4"
+  }
+}
